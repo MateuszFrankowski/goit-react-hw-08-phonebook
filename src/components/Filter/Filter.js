@@ -3,7 +3,7 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilter } from 'redux/Selectors';
-import { setNameFilterAction } from 'redux/FilterSlice';
+import { setNameFilterAction } from 'redux/filter/FilterSlice';
 export const Filter = () => {
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
