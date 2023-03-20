@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { singIn } from 'redux/auth/auth.thunk';
+import { logIn } from 'redux/auth/AuthThunk';
 
 export const SignIn = () => {
   const dispatch = useDispatch();
@@ -8,7 +8,7 @@ export const SignIn = () => {
     e.preventDefault();
     const form = e.currentTarget;
     dispatch(
-      signIn({
+      logIn({
         password: form.elements.password.value,
         email: form.elements.email.value,
       })

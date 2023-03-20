@@ -1,8 +1,8 @@
 import css from './PhoneBookForm.module.css';
-import { getFilter } from 'redux/Selectors';
+import { getFilter } from 'redux/contacts/ContactsSelectors';
 import { addContact } from 'MockStorageHandlers/MockStorageHandlers';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/Selectors';
+import { getContacts } from 'redux/contacts/ContactsSelectors';
 import { nanoid } from 'nanoid';
 import React from 'react';
 export const ContactForm = () => {

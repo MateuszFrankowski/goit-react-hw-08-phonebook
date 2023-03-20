@@ -1,7 +1,7 @@
 import css from './ContactsList.module.css';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { getContacts } from 'redux/Selectors';
+import { getContacts } from 'redux/contacts/ContactsSelectors';
 import { deleteContact } from 'MockStorageHandlers/MockStorageHandlers';
 export const ContactsList = () => {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchTasks } from '../redux/tasks/tasks.thunk';
+import { fetchContacts } from 'redux/contacts/ContactsThunk';
 
 import { Filter } from 'components/Filter/Filter';
 import { ContactsList } from 'components/Contacts/ContactList';
@@ -8,7 +8,7 @@ import { ContactsList } from 'components/Contacts/ContactList';
 export const ContactsPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchTasks('arg'));
+    dispatch(fetchContacts('arg'));
   }, [dispatch]);
 
   return (

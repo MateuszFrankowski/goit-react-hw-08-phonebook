@@ -4,10 +4,10 @@ import {
   addContact,
   deleteContact,
 } from 'MockStorageHandlers/MockStorageHandlers';
-const handlePending = state => {
+const handlePendingState = state => {
   state.isLoading = true;
 };
-const handleRejected = (state, action) => {
+const handleRejection = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 };
@@ -18,30 +18,33 @@ const isRejectedAction = action => action.type.endsWith('reject');
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: initialContactsState,
-  extraReducers:builder => {     builder
+  extraReducers: builder => {
+    builder
 
-    .addCase(loadContacts.fulfilled,(state, action)=> {
-      state.isLoading = false;
-      state.error = null;
-      state.items = action.payload;
-    })
-   .addCase(addContact.fulfilled,(state, action)=> {
-      state.isLoading = false;
-      state.error = null;
-      state.items.push(action.payload);
-    })
-   .addCase(deleteContact.fulfilled,(state, action)=> {
-      state.isLoading = false;
-      state.error = null;
-      const index = state.items.findIndex(
-        contact => contact.id === action.payload.id
-      );
-      state.items.splice(index, 1);
-})       
-       .addMatcher(isPendingAction, handlePendingState)
-          .addMatcher(isRejectedAction, handleRejection)
-  .addDefaultCase((state, _action) => state)},
-  
+      .addCase(loadContacts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = action.payload;
+      })
+      .addCase(addContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items.push(action.payload);
+      })
+      .addCase(deleteContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.items.findIndex(
+          contact => contact.id === action.payload.id
+        );
+        state.items.splice(index, 1);
+      })
+      .addMatcher(isPendingAction, handlePendingState)
+      .addMatcher(isRejectedAction, handleRejection)
+      .addDefaultCase((state, _action) => state);
+  },
+});
 
-
+export const { getContactsRejected, getTasksSuccessful } =
+  contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;

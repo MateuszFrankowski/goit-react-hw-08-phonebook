@@ -1,16 +1,16 @@
 import { loadContacts } from 'MockStorageHandlers/MockStorageHandlers';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Register } from '../pages/register';
-import { SignIn } from '../pages/sign-in';
-import { Home } from '../pages/home';
+import { Register } from '../pages/Register';
+import { SignIn } from '../pages/Login';
+import { Home } from '../pages/Home';
 import { Layout } from './Layout/Layout';
-import { useAuth } from '../hook/useAuth/useAuth';
+import { useAuth } from '../hook/hooks/useAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { ProtectedRoute } from './ProtectedRoute';
-import { RestrictedRoute } from './RestrictedRoute';
-import { ContactsPage } from 'pages/contacts';
+import { ProtectedRoute } from './Route/ProtectedRoute';
+import { RestrictedRoute } from './Route/RestrictedRoute';
+import { ContactsPage } from 'pages/Contacts';
 
 export const App = () => {
   const dispatch = useDispatch();
