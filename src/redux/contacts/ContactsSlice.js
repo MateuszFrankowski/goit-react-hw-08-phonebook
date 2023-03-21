@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  loadContacts,
-  addContact,
-  deleteContact,
-} from 'MockStorageHandlers/MockStorageHandlers';
+  fetchContacts,
+  addNewContact,
+  deleteSelectedContact,
+} from './ContactsThunk';
 const handlePendingState = state => {
   state.isLoading = true;
 };
@@ -21,17 +21,17 @@ const contactsSlice = createSlice({
   extraReducers: builder => {
     builder
 
-      .addCase(loadContacts.fulfilled, (state, action) => {
+      .addCase(fetchContacts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.items = action.payload;
       })
-      .addCase(addContact.fulfilled, (state, action) => {
+      .addCase(addNewContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.items.push(action.payload);
       })
-      .addCase(deleteContact.fulfilled, (state, action) => {
+      .addCase(deleteSelectedContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         const index = state.items.findIndex(

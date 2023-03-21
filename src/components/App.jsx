@@ -1,44 +1,52 @@
-import { loadContacts } from 'MockStorageHandlers/MockStorageHandlers';
-import React from 'react';
+import React, { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Register } from '../pages/Register';
-import { SignIn } from '../pages/Login';
-import { Home } from '../pages/Home';
+import { refreshUser } from 'redux/auth/AuthThunk';
 import { Layout } from './Layout/Layout';
-import { useAuth } from '../hook/hooks/useAuth';
+import { useAuth } from 'hooks/useAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { ProtectedRoute } from './Route/ProtectedRoute';
 import { RestrictedRoute } from './Route/RestrictedRoute';
-import { ContactsPage } from 'pages/Contacts';
+
+const HomePage = lazy(() => import('../pages/Home'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/Login'));
+const ContactsPage = lazy(() => import('../pages/Contacts'));
 
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch(loadContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
   return isRefreshing ? (
     <div>Loading</div>
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+        <Route index element={<HomePage />} />
         <Route
           path="/register"
-          element={<RestrictedRoute component={<Register />} />}
+          element={
+            <RestrictedRoute
+              redirectTo="/contacts"
+              component={<RegisterPage />}
+            />
+          }
         />
         <Route
-          path="/sign-in"
-          element={<RestrictedRoute component={<SignIn />} />}
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+          }
         />
         <Route
           path="/contacts"
           element={
             <ProtectedRoute
               component={<ContactsPage />}
-              redirectTo={'/sign-in'}
+              redirectTo={'/login'}
             />
           }
         />

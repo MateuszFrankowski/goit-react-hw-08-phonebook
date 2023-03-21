@@ -14,10 +14,10 @@ import {
   REHYDRATE,
 } from 'redux-persist/es/constants';
 const myApi = {
-  tasks: '/api/contacts',
-  filters: 'api/filter',
+  contacts: '/api/contacts',
+  filter: 'api/filte',
 };
-const tasksPersistConfig = {
+const contactsPersistConfig = {
   key: 'contacts',
   storage,
   whitelist: ['list'],
@@ -31,8 +31,9 @@ const authPersistConfig = {
 
 export const Store = configureStore({
   reducer: {
-    contacts: persistReducer(authPersistConfig, contactsReducer),
+    contacts: persistReducer(contactsPersistConfig, contactsReducer),
     filter: filterReducer,
+    auth: persistReducer(authPersistConfig, authReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

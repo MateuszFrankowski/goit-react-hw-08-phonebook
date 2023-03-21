@@ -2,11 +2,11 @@ import css from './ContactsList.module.css';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getContacts } from 'redux/contacts/ContactsSelectors';
-import { deleteContact } from 'MockStorageHandlers/MockStorageHandlers';
+import { deleteSelectedContact } from 'redux/contacts/ContactsThunk';
 export const ContactsList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  const handleDelete = id => dispatch(deleteContact(id));
+  const handleDelete = id => dispatch(deleteSelectedContact(id));
   const filt = useSelector(state => state.filter);
 
   const phoneContacts = contacts.filter(contact =>

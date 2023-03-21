@@ -17,7 +17,7 @@ const isPendingAction = action => action.type.endsWith('pending');
 const isRejectedAction = action => action.type.endsWith('reject');
 const authSlice = createSlice({
   name: 'auth',
-  initialState,
+  initialState: initialState,
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, action) => {

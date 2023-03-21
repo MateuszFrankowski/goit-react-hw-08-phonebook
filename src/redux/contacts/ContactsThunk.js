@@ -1,9 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  loadContacts,
-  addContact,
-  deleteContact,
-} from 'MockStorageHandlers/MockStorageHandlers';
+import axios from 'axios';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/getContacts,async',
@@ -11,7 +7,7 @@ export const fetchContacts = createAsyncThunk(
     const contacts = thunkAPI.getState.state();
     if (contacts?.length !== 0) return [];
     try {
-      const response = await loadContacts();
+      const response = await axios.get('/contacts');
       return response.contacts;
     } catch (e) {
       return thunkAPI.rejectWithValue('There was a problem while fetching');
@@ -21,11 +17,10 @@ export const fetchContacts = createAsyncThunk(
 
 export const deleteSelectedContact = createAsyncThunk(
   'contacts/deleteContact',
-  async (id, { rejectWithValue }) => {
+  async (contactId, { rejectWithValue }) => {
     try {
-      const response = await deleteContact(id);
-
-      return id;
+      const response = await axios.delete(`/contacts/${contactId}`);
+      return response.data;
     } catch (e) {
       return rejectWithValue(e);
     }
@@ -33,15 +28,11 @@ export const deleteSelectedContact = createAsyncThunk(
 );
 export const addNewContact = createAsyncThunk(
   'contacts/addContact',
-  async ({ id, text }, { rejectWithValue }) => {
+  async ({ text }, { rejectWithValue }) => {
     try {
-      const response = await addContact(text);
+      const response = await axios.post('/contacts', { text });
 
-      return {
-        id,
-        text,
-        completed: false,
-      };
+      return response.data;
     } catch (e) {
       return rejectWithValue(e);
     }
