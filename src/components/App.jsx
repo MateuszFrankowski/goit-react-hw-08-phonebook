@@ -50,7 +50,8 @@ export const App = () => {
             />
           }
         />
-      </Route>
+      </Route>{' '}
+      <Route path="*" element={<p>There's nothing here: 404!</p>} />
     </Routes>
   );
 };

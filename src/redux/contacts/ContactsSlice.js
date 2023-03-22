@@ -11,7 +11,7 @@ const handleRejection = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 };
-const initialContactsState = { items: [], isPending: false, error: null };
+const initialContactsState = { items: [], isLoading: false, error: null };
 const isPendingAction = action => action.type.endsWith('pending');
 const isRejectedAction = action => action.type.endsWith('reject');
 
@@ -45,6 +45,6 @@ const contactsSlice = createSlice({
   },
 });
 
-export const { getContactsRejected, getTasksSuccessful } =
-  contactsSlice.actions;
+// export const { getContactsRejected, getTasksSuccessful } =
+//   contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;

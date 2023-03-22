@@ -1,6 +1,6 @@
 import css from './PhoneBookForm.module.css';
-import { getFilter } from 'redux/contacts/ContactsSelectors';
-import { addContact } from 'MockStorageHandlers/MockStorageHandlers';
+import { getFilter } from 'redux/filter/FilterSelectors';
+import { addNewContact } from 'redux/contacts/ContactsThunk';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/contacts/ContactsSelectors';
 import { nanoid } from 'nanoid';
@@ -20,7 +20,7 @@ export const ContactForm = () => {
         return alert(name.value + ' is already in contacts');
       }
     }
-    dispatch(addContact({ name: name.value, number: number.value }));
+    dispatch(addNewContact({ name: name.value, number: number.value }));
     form.reset();
     const input = document.getElementsByName('filter');
     input.value = filter;

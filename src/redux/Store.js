@@ -15,7 +15,7 @@ import {
 } from 'redux-persist/es/constants';
 const myApi = {
   contacts: '/api/contacts',
-  filter: 'api/filte',
+  filter: 'api/filter',
 };
 const contactsPersistConfig = {
   key: 'contacts',

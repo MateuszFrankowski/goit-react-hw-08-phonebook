@@ -2,9 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const fetchContacts = createAsyncThunk(
-  'contacts/getContacts,async',
+  'contacts/getContacts',
   async (_arg, thunkAPI) => {
     const contacts = thunkAPI.getState.state();
+    console.log('kurwica', contacts);
     if (contacts?.length !== 0) return [];
     try {
       const response = await axios.get('/contacts');
@@ -28,9 +29,9 @@ export const deleteSelectedContact = createAsyncThunk(
 );
 export const addNewContact = createAsyncThunk(
   'contacts/addContact',
-  async ({ text }, { rejectWithValue }) => {
+  async (text, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/contacts', { text });
+      const response = await axios.post('/contacts', text);
 
       return response.data;
     } catch (e) {

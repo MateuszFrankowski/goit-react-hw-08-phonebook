@@ -1,28 +1,16 @@
-import { Outlet, useNavigate } from 'react-router-dom';
-import css from './Layout.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { logOut } from 'redux/auth/AuthThunk';
-import { selectIsLoggedIn } from 'redux/auth/AuthSelectors';
+import { Outlet } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { AppBar } from 'components/AppBar/AppBar';
+import { Suspense } from 'react';
 
 export const Layout = () => {
-  const isAuthorized = useSelector(selectIsLoggedIn);
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const handleSignOut = () => dispatch(logOut());
-
   return (
-    <main className={css.container}>
-      <nav className={css.nav}>
-        {!isAuthorized && (
-          <>
-            <button onClick={() => navigate('sign-in')}>Sign in</button>
-            <button onClick={() => navigate('register')}>Register</button>
-          </>
-        )}
-        {isAuthorized && <button onClick={handleSignOut}>Sign out</button>}
-      </nav>
-      <Outlet />
-    </main>
+    <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 16px' }}>
+      <AppBar />
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
+      <Toaster position="top-right" reverseOrder={false} />
+    </div>
   );
 };

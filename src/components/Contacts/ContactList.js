@@ -3,14 +3,16 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getContacts } from 'redux/contacts/ContactsSelectors';
 import { deleteSelectedContact } from 'redux/contacts/ContactsThunk';
+import { getFilter } from 'redux/filter/FilterSelectors';
 export const ContactsList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
+  console.log('contacts', contacts);
   const handleDelete = id => dispatch(deleteSelectedContact(id));
-  const filt = useSelector(state => state.filter);
+  const filter = useSelector(getFilter);
 
   const phoneContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filt.toLowerCase())
+    contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
   return (
