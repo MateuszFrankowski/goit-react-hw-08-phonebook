@@ -11,10 +11,10 @@ export default function ContactsPage() {
   const dispatch = useDispatch();
   //console.log('tu byłem', useSelector(getIsLoading));
   // const isLoading = useSelector(getIsLoading);
+
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
-
   return (
     <>
       <div>

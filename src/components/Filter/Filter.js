@@ -1,4 +1,5 @@
 import css from './Filter.module.css';
+import { Input, Box } from '@chakra-ui/react';
 import React from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,15 +16,15 @@ export const Filter = () => {
   };
   const filterId = nanoid();
   return (
-    <div className={css.filter}>
-      <label htmlFor={filterId}>Find Contact By Name</label>
-      <input
+    <Box>
+      <Input
+        placeholder="find contact"
         id={filterId}
         value={filter}
         type="text"
         name="filter"
         onChange={handleChange}
       />
-    </div>
+    </Box>
   );
 };
