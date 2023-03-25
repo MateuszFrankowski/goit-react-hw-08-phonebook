@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/ContactsThunk';
@@ -15,6 +16,9 @@ export default function UserContacts() {
   return (
     <>
       <div>
+        <Helmet>
+          <title>Phone Book</title>
+        </Helmet>
         <ContactForm />
         <Filter />
         <ContactsList />
