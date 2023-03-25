@@ -9,10 +9,14 @@ import { ProtectedRoute } from './Route/ProtectedRoute';
 import { RestrictedRoute } from './Route/RestrictedRoute';
 import { Spinner } from '@chakra-ui/react';
 
-const HomePage = lazy(() => import('../pages/Home').default);
-const RegisterPage = lazy(() => import('../pages/Register').default);
-const LoginPage = lazy(() => import('../pages/Login').default);
-const ContactsPage = lazy(() => import('../pages/ContactsUser').default);
+const HomePage = lazy(() => import('../pages/Home').then(x => x.default));
+const RegisterPage = lazy(() =>
+  import('../pages/Register').then(x => x.default)
+);
+const LoginPage = lazy(() => import('../pages/Login').then(x => x.default));
+const ContactsPage = lazy(() =>
+  import('../pages/ContactsUser').then(x => x.default)
+);
 
 export const App = () => {
   const dispatch = useDispatch();
