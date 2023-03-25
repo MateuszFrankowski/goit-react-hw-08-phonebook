@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <div style={styles.container}>
       <Heading size="lg" fontSize="50px">
-        Welcome to your phone book app!
+        Welcome to phone book app!
       </Heading>
       <Icon viewBox="0 0 32 32" color="red.500" boxSize={20}>
         <path
