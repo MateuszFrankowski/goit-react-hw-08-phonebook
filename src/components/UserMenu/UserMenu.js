@@ -24,7 +24,6 @@ export const UserMenu = () => {
             ></path>
           </Icon>
         }
-        colorScheme="teal"
         variant="solid"
       >
         Logout
