@@ -10,7 +10,7 @@ import { RestrictedRoute } from './Route/RestrictedRoute';
 import { Spinner } from '@chakra-ui/react';
 
 const HomePage = lazy(() => import('../pages/Home'));
-// const RegisterPage = lazy(() => import('../pages/Register'));
+const RegisterPage = lazy(() => import('../pages/Register'));
 const LoginPage = lazy(() => import('../pages/Login'));
 const ContactsPage = lazy(() => import('../pages/ContactsUser'));
 
@@ -38,7 +38,7 @@ export const App = () => {
           element={
             <RestrictedRoute
               redirectTo="/contacts"
-              // component={<RegisterPage />}
+              component={<RegisterPage />}
             />
           }
         />
@@ -57,8 +57,8 @@ export const App = () => {
             />
           }
         />
-      </Route>{' '}
-      <Route path="*" element={<p>There's nothing here: 404!</p>} />
+        <Route path="*" element={<p>There's nothing here: 404!</p>} />
+      </Route>
     </Routes>
   );
 };
