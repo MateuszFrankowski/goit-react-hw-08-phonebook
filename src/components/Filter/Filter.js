@@ -1,4 +1,3 @@
-import css from './Filter.module.css';
 import {
   Input,
   Box,

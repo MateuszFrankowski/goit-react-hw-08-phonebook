@@ -2,13 +2,7 @@ import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/AuthThunk.js';
 import css from './LoginForm.module.css';
 import { Input, Button } from '@chakra-ui/react';
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Box,
-} from '@chakra-ui/react';
+import { FormControl, FormLabel, Box } from '@chakra-ui/react';
 export const LoginForm = () => {
   const dispatch = useDispatch();
 
