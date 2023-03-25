@@ -12,7 +12,7 @@ import { Spinner } from '@chakra-ui/react';
 const HomePage = lazy(() => import('pages/Home'));
 const RegisterPage = lazy(() => import('pages/Register'));
 const LoginPage = lazy(() => import('pages/Login'));
-const ContactsPage = lazy(() => import('pages/ContactsPage'));
+const ContactsPage = lazy(() => import('pages/ContactsUser'));
 
 export const App = () => {
   const dispatch = useDispatch();
