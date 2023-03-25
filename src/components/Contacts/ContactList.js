@@ -1,24 +1,25 @@
-import css from './ContactsList.module.css';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getContacts } from 'redux/contacts/ContactsSelectors';
 import { deleteSelectedContact } from 'redux/contacts/ContactsThunk';
 import { getFilter } from 'redux/filter/FilterSelectors';
+import { Spinner, AbsoluteCenter } from '@chakra-ui/react';
+import { getIsLoading } from 'redux/contacts/ContactsSelectors';
 import {
+  Box,
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
   TableCaption,
   TableContainer,
   Button,
-  Box,
 } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 export const ContactsList = () => {
+  const isLoading = useSelector(getIsLoading);
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
 
@@ -30,7 +31,20 @@ export const ContactsList = () => {
   );
 
   return (
-    <Box>
+    <Box p="6">
+      {isLoading && (
+        <Box position="relative" h="100px">
+          <AbsoluteCenter p="48" color="white" axis="both">
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="blue.500"
+              size="xl"
+            />
+          </AbsoluteCenter>
+        </Box>
+      )}
       <TableContainer>
         <Table variant="striped" colorScheme="teal">
           <TableCaption>My contacts</TableCaption>
@@ -43,10 +57,10 @@ export const ContactsList = () => {
           </Thead>
           <Tbody>
             {phoneContacts.map(contact => (
-              <tr key={contact.id}>
-                <td>{contact.name}</td>
-                <td>{contact.number}</td>
-                <td>
+              <Tr key={contact.id}>
+                <Td>{contact.name}</Td>
+                <Td>{contact.number}</Td>
+                <Td>
                   <Button
                     leftIcon={<DeleteIcon />}
                     colorScheme="teal"
@@ -56,8 +70,8 @@ export const ContactsList = () => {
                   >
                     Delete
                   </Button>
-                </td>
-              </tr>
+                </Td>
+              </Tr>
             ))}
           </Tbody>
         </Table>

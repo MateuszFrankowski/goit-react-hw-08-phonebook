@@ -1,7 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/AuthThunk.js';
 import css from './LoginForm.module.css';
-
+import { Input, Button } from '@chakra-ui/react';
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Box,
+} from '@chakra-ui/react';
 export const LoginForm = () => {
   const dispatch = useDispatch();
 
@@ -19,15 +26,17 @@ export const LoginForm = () => {
 
   return (
     <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label className={css.label}>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit">Log In</button>
+      <FormControl p="3">
+        <FormLabel className={css.form}>Email </FormLabel>
+        <Input htmlSize={55} width="auto" type="email" name="email" />
+      </FormControl>
+      <FormControl p="3">
+        <FormLabel>Password </FormLabel>
+        <Input htmlSize={55} width="auto" type="password" name="password" />
+      </FormControl>
+      <Box p="3">
+        <Button type="submit">Log In</Button>
+      </Box>
     </form>
   );
 };

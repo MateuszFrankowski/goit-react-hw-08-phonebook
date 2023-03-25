@@ -1,10 +1,6 @@
 .form {
-  display: flex;
-  gap: 5px;
-  flex-direction: column;
-  width: 50%;
-  align-items: center;
-  background-color: whitesmoke;
-  border-radius: 4px;
-  padding: 20px;
+  margin-bottom: 25px;
+}
+.form-input {
+  margin-right: 8px;
 }

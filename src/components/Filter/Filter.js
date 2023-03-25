@@ -1,5 +1,13 @@
 import css from './Filter.module.css';
-import { Input, Box } from '@chakra-ui/react';
+import {
+  Input,
+  Box,
+  FormLabel,
+  IconButton,
+  InputGroup,
+  InputLeftElement,
+} from '@chakra-ui/react';
+import { SearchIcon } from '@chakra-ui/icons';
 import React from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,15 +24,29 @@ export const Filter = () => {
   };
   const filterId = nanoid();
   return (
-    <Box>
-      <Input
-        placeholder="find contact"
-        id={filterId}
-        value={filter}
-        type="text"
-        name="filter"
-        onChange={handleChange}
-      />
+    <Box p="6">
+      {' '}
+      <FormLabel>Find Contact</FormLabel>
+      <InputGroup>
+        <Input
+          placeholder="write a name"
+          id={filterId}
+          value={filter}
+          type="text"
+          name="filter"
+          onChange={handleChange}
+        />
+        <InputLeftElement
+          pointerEvents="none"
+          children={
+            <IconButton
+              colorScheme="gray"
+              aria-label="Search database"
+              icon={<SearchIcon />}
+            />
+          }
+        />
+      </InputGroup>
     </Box>
   );
 };
