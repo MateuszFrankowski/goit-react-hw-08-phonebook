@@ -7,7 +7,7 @@ import { Filter } from 'components/Filter/Filter';
 import { ContactForm } from 'components/Form/PhoneBookForm';
 import { ContactsList } from 'components/Contacts/ContactList';
 
-export default function UserContacts() {
+const UserContacts = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,4 +25,5 @@ export default function UserContacts() {
       </div>
     </>
   );
-}
+};
+export default UserContacts;

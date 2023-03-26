@@ -18,7 +18,7 @@ const styles = {
   },
 };
 
-function Home() {
+const Home = () => {
   const isLogged = useSelector(selectIsLoggedIn);
   return (
     <div style={styles.container}>
@@ -36,5 +36,5 @@ function Home() {
       )}
     </div>
   );
-}
+};
 export default Home;
