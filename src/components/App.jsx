@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { ProtectedRoute } from './Route/ProtectedRoute';
 import { RestrictedRoute } from './Route/RestrictedRoute';
 import { Spinner } from '@chakra-ui/react';
-import { Home } from '../pages/Home.js';
+import Home from '../pages/Home.js';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import UserContacts from '../pages/ContactsUser';
