@@ -8,14 +8,11 @@ import { useEffect } from 'react';
 import { ProtectedRoute } from './Route/ProtectedRoute';
 import { RestrictedRoute } from './Route/RestrictedRoute';
 import { Spinner } from '@chakra-ui/react';
-import Home from '../pages/Home.js';
-import Register from '../pages/Register';
-import Login from '../pages/Login';
-import UserContacts from '../pages/ContactsUser';
-// const HomePage = lazy(() => import('../pages/Home'));
-// const RegisterPage = lazy(() => import('../pages/Register'));
-// const LoginPage = lazy(() => import('../pages/Login'));
-// const ContactsPage = lazy(() => import('../pages/ContactsUser'));
+
+const HomePage = lazy(() => import('../pages/Home'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/Login'));
+const ContactsPage = lazy(() => import('../pages/ContactsUser'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -35,24 +32,27 @@ export const App = () => {
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+        <Route index element={<HomePage />} />
         <Route
           path="/register"
           element={
-            <RestrictedRoute redirectTo="/contacts" component={<Register />} />
+            <RestrictedRoute
+              redirectTo="/contacts"
+              component={<RegisterPage />}
+            />
           }
         />
         <Route
           path="/login"
           element={
-            <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
           }
         />
         <Route
           path="/contacts"
           element={
             <ProtectedRoute
-              component={<UserContacts />}
+              component={<ContactsPage />}
               redirectTo={'/login'}
             />
           }
